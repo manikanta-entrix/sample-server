@@ -23,12 +23,9 @@ const authenticator = (req, res, next) => {
       }
 
       req.user = decoded;
-
-      next();
     });
-  } else {
-    next();
   }
+  next();
 };
 
 export default authenticator;
