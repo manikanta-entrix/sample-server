@@ -44,12 +44,11 @@ export const validateLogin = async (u) => {
 
       // Generate JWT token with a 24-hour expiration
       const token = jwt.sign(
-        { email: userInfo.email }, // Only send non-sensitive data in the token (e.g., email)
-        process.env.JWT_SECRET, // Secret key to sign the token
-        { expiresIn: '24h' } // Token expiration time (24 hours)
+        { email: userInfo.email }, 
+        process.env.JWT_SECRET, 
+        { expiresIn: '24h' } 
       );
 
-      // Return user info along with the JWT token
       return { 
         status: true, 
         statusCode: 200, 
@@ -81,7 +80,6 @@ export const setUser = async query => {
       let updatedUser;
       let userQuery = { email: { $regex: new RegExp('^' + email + '$', 'i') } };
   
-      // Check if user already exists with the provided email address
       let user = await User.findOne(userQuery);
       if (user) {
         // If user exists, return an error (user already exists)
